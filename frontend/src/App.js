@@ -15,7 +15,7 @@ const App = () => {
   const[imageLink, setImageLink] = useState('')
   const[editItem, setEditItem] = useState(null)
   
-  /*const[itemList, setItemList] = useState(
+  const[itemList, setItemList] = useState(
     [
       {
         id:1,
@@ -24,6 +24,30 @@ const App = () => {
         price: 20,
         count: 2,
         imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
+      },
+      {
+        id: 6,
+        name: "Milk",
+        description: "Amul Milk",
+        price: 18,
+        count: 1,
+        imageLink: "https://5.imimg.com/data5/JW/MJ/FG/ANDROID-75951370/product-jpeg-500x500.jpg"
+      },
+      {
+        id: 7,
+        name: "Chocolate",
+        description: "Cadbury’s Chocolate",
+        price: 20,
+        count: 10,
+        imageLink: "https://m.media-amazon.com/images/I/61NBWdPq-7L._SL1500_.jpg"
+      },
+      {
+        id: 8,
+        name: "Banana",
+        description: "Right from farm",
+        price: 30,
+        count: 1,
+        imageLink: "https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg"
       },
       {
         id:2,
@@ -58,18 +82,17 @@ const App = () => {
         imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
       }
     ]
-  );*/
-  const[itemList, setItemList] = useState([]);
+  );
   const[dbItemList, setDbItemList] = useState(itemList)
-  console.log("Fetching!")
-  axios.get('http://localhost:8000/items').then(function (response) {
-    // handle success
-    if(response.status === 200){
-      console.log(response.data);
-      setItemList(response.data)
-      setDbItemList(response.data)
-    }
-  })
+  // console.log("Fetching!")
+  // axios.get('http://localhost:8000/items').then(function (response) {
+  //   // handle success
+  //   if(response.status === 200){
+  //     // console.log(response.data);
+  //     setItemList(response.data)
+  //     setDbItemList(response.data)
+  //   }
+  // })
   return (
     <>
       <div className="app-container">
@@ -80,10 +103,8 @@ const App = () => {
                 <div className="col-4 sidenav">
                   <Header
                     customSearchInput={customSearchInput}
-                    itemList={itemList}
                     dbItemList={dbItemList}
                     setItemList={setItemList}
-                    setDbItemList={setDbItemList}
                     setCustomSearchInput={setCustomSearchInput}
                   />
                   <AddItemForm 
@@ -114,7 +135,7 @@ const App = () => {
                     itemList={itemList} 
 
                     setID={setID}
-                    setTitle={setName} 
+                    setName={setName} 
                     setDescription={setDescription} 
                     setPrice={setPrice} 
                     setCount={setCount}
