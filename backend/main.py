@@ -3,7 +3,7 @@ from fastapi import FastAPI, status, HTTPException
 from model import Item
 from typing import List, Optional
 from database import SessionLocal
-from model_db import Item as DB_Item
+from db_model import Item as DB_Item
 
 app = FastAPI()
 db = SessionLocal()
