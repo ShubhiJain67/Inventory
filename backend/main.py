@@ -49,7 +49,8 @@ def add_new_item(item: Item):
         name = item.name,
         price = item.price,
         description = item.description,
-        on_offer = item.on_offer
+        count = item.count,
+        imageLink = item.imageLink
     )
     db.add(new_item)
     db.commit()
@@ -64,7 +65,8 @@ def update_item_by_id(item_id: int, item: Item):
     target_item.name = item.name
     target_item.description = item.description
     target_item.price = item.price
-    target_item.on_offer = item.on_offer
+    target_item.count = item.count,
+    target_item.imageLink = item.imageLink
 
     db.commit()
 

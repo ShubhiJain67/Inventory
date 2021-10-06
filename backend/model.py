@@ -6,7 +6,8 @@ class Item(BaseModel):
     name: str
     description: str
     price: float
-    on_offer: bool
+    count: int
+    imageLink: str
 
     class Config:
         orm_mode = True

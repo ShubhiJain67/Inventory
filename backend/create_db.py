@@ -1,5 +1,5 @@
 from database import Base, engine
-from model_db import Item
+from db_model import Item
 
 print("Creating Database ...")
 
