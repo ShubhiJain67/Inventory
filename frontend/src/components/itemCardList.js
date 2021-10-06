@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCard from './itemCard'
 
-const ItemCardList = ({itemList, setID, setTitle, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, setEditItem}) => {
+const ItemCardList = ({itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, setEditItem}) => {
     
     const ItemCards = (itemList).map((item) => {
         return (
@@ -9,7 +9,7 @@ const ItemCardList = ({itemList, setID, setTitle, setDescription, setPrice, setC
                 item = {item}
                 itemList = {itemList}
                 setID = {setID}
-                setTitle = {setTitle}
+                setName = {setName}
                 setDescription = {setDescription}
                 setPrice = {setPrice}
                 setCount = {setCount}

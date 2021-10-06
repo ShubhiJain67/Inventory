@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ItemCard = ({item, itemList, setID, setTitle, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, setEditItem}) => {
+const ItemCard = ({item, itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, setEditItem}) => {
     
     const handleDelete = ({id}) => {
         console.log("Deleting an Item")
@@ -17,7 +17,7 @@ const ItemCard = ({item, itemList, setID, setTitle, setDescription, setPrice, se
             const targetItem = targetItemList[0]
             setEditItem(targetItem)
             setID(targetItem.id)
-            setTitle(targetItem.title)
+            setName(targetItem.name)
             setDescription(targetItem.description)
             setPrice(targetItem.price)
             setCount(targetItem.count)
@@ -27,8 +27,8 @@ const ItemCard = ({item, itemList, setID, setTitle, setDescription, setPrice, se
     return (
         <div className="item-card-wrapper" key={item.id}>
                 <div className="item-card">
-                    <h1 className="item-title">{item.title}</h1>
-                    <img src={item.imageLink} alt={item.title} title={item.title} className="item-image"/>
+                    <h1 className="item-name">{item.name}</h1>
+                    <img src={item.imageLink} alt={item.name} title={item.name} className="item-image"/>
                     <p className="item-description">{item.description}</p>
                     <div className="item-detail">
                         <p className="item-price">Rs. {item.price}</p>

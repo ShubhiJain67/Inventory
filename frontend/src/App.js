@@ -5,61 +5,66 @@ import AddItemForm from './components/addItemForm';
 import ItemCardList from "./components/itemCardList";
 
 const App = () => {
+  const axios = require('axios').default;
   const[customSearchInput, setCustomSearchInput] = useState('')
   const[ID, setID] = useState('')
-  const[title, setTitle] = useState('')
+  const[name, setName] = useState('')
   const[description, setDescription] = useState('')
   const[price, setPrice] = useState('')
   const[count, setCount] = useState('')
   const[imageLink, setImageLink] = useState('')
   const[editItem, setEditItem] = useState(null)
 
-  const[itemList, setItemList] = useState(
-    [
-      {
-        id:1,
-        title:"Title 1",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        price: 20,
-        count: 2,
-        imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
-      },
-      {
-        id:2,
-        title:"Title 2",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        price: 200,
-        count: 2,
-        imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
-      },
-      {
-        id:3,
-        title:"Title 3",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        price: 1800,
-        count: 2,
-        imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
-      },
-      {
-        id:4,
-        title:"Title 2",
-        description: "Description 2",
-        price: 200,
-        count: 2,
-        imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
-      },
-      {
-        id:5,
-        title:"Title 3",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        price: 1800,
-        count: 2,
-        imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
-      }
-    ]
-  );
+  const[itemList, setItemList] = useState([]);
+  // setItemList([
+  //   {
+  //     id:1,
+  //     name:"Title 1",
+  //     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     price: 20,
+  //     count: 2,
+  //     imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
+  //   },
+  //   {
+  //     id:2,
+  //     name:"Title 2",
+  //     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  //     price: 200,
+  //     count: 2,
+  //     imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
+  //   },
+  //   {
+  //     id:3,
+  //     name:"Title 3",
+  //     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     price: 1800,
+  //     count: 2,
+  //     imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
+  //   },
+  //   {
+  //     id:4,
+  //     name:"Title 2",
+  //     description: "Description 2",
+  //     price: 200,
+  //     count: 2,
+  //     imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
+  //   },
+  //   {
+  //     id:5,
+  //     name:"Title 3",
+  //     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     price: 1800,
+  //     count: 2,
+  //     imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
+  //   }
+  // ])
   const[dbItemList, setDbItemList] = useState(itemList)
-
+  console.log("Fetching!")
+  axios.get('http://localhost:8000/items').then(function (response) {
+    // handle success
+    console.log(response.data);
+    setItemList(response.data)
+  })
   return (
     <>
       <div className="app-container">
@@ -78,7 +83,7 @@ const App = () => {
                   />
                   <AddItemForm 
                     ID={ID}
-                    title={title} 
+                    name={name} 
                     description={description} 
                     price={price} 
                     count={count}
@@ -86,7 +91,7 @@ const App = () => {
                     dbItemList={dbItemList}
 
                     setID={setID}
-                    setTitle={setTitle} 
+                    setTitle={setName} 
                     setDescription={setDescription} 
                     setPrice={setPrice} 
                     setCount={setCount}
@@ -104,7 +109,7 @@ const App = () => {
                     itemList={itemList} 
 
                     setID={setID}
-                    setTitle={setTitle} 
+                    setTitle={setName} 
                     setDescription={setDescription} 
                     setPrice={setPrice} 
                     setCount={setCount}

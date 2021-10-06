@@ -1,10 +1,10 @@
 import React from "react";
 import {v4 as uuidv4} from "uuid";
 
-const AddItemForm = ({ID, title, description, price, count, imageLink, dbItemList, setID, setTitle, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, editItem, setEditItem}) => {
+const AddItemForm = ({ID, name, description, price, count, imageLink, dbItemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, editItem, setEditItem}) => {
 
     const onTitleChange = (event) => {
-        setTitle(event.target.value)
+        setName(event.target.value)
     }
     const onDescriptionChange = (event) => {
         setDescription(event.target.value)
@@ -26,7 +26,7 @@ const AddItemForm = ({ID, title, description, price, count, imageLink, dbItemLis
         console.log("Reseting Form")
         setEditItem(null)
         setID('')
-        setTitle('')
+        setName('')
         setDescription('')
         setCount('')
         setPrice('')
@@ -46,7 +46,7 @@ const AddItemForm = ({ID, title, description, price, count, imageLink, dbItemLis
                         edited = true;
                         return {
                             id:`${ID}`,
-                            title:`${title}`,
+                            name:`${name}`,
                             description: `${description}`,
                             price: `${price}`,
                             count: `${count}`,
@@ -67,7 +67,7 @@ const AddItemForm = ({ID, title, description, price, count, imageLink, dbItemLis
             dbItemList.push(
                 {
                     id:uuidv4(),
-                    title:`${title}`,
+                    name:`${name}`,
                     description: `${description}`,
                     price: `${price}`,
                     count: `${count}`,
@@ -80,7 +80,7 @@ const AddItemForm = ({ID, title, description, price, count, imageLink, dbItemLis
                 method: 'POST',
                 body: JSON.stringify({
                     id:uuidv4(),
-                    title:`${title}`,
+                    name:`${name}`,
                     description: `${description}`,
                     price: {price},
                     count: {count},
@@ -90,7 +90,7 @@ const AddItemForm = ({ID, title, description, price, count, imageLink, dbItemLis
         }
         setEditItem(null)
         setID('')
-        setTitle('')
+        setName('')
         setDescription('')
         setCount('')
         setPrice('')
@@ -112,10 +112,10 @@ const AddItemForm = ({ID, title, description, price, count, imageLink, dbItemLis
                 <div className="full-width">
                     <input 
                         type="text" 
-                        placeholder="Title"
+                        placeholder="Name"
                         className="task-input"
                         required
-                        value={title}
+                        value={name}
                         onChange={onTitleChange}
                     />
                 </div>
