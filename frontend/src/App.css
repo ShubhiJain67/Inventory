@@ -1,38 +1,178 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header h1{
+  padding: 30px 50px;
+  display: flex;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-container{
+  background: linear-gradient(to right bottom, #e1b382, #c89666);
+  width: 100%;
   min-height: 100vh;
+}
+
+.app{
+  display: flex;
+}
+
+.sidenav {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: #12343b;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* ------------------------------- Item Card and Item Card List ------------------------------ */
+
+.item-card-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-card-wrapper .item-card{
+  background-color: #12343b;
+  width: 450px;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 3px 6px 40px #000;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-title{
+  color: #fff;
+  text-align: center;
+  margin: 30px 0px;
+}
+
+.item-description{
+  color: #fff;
+  text-align: center;
+  margin: 30px 0px;
+  font-size: 24px;
+}
+
+.item-image{
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.item-detail{
+  display: flex;
+  width: 100%;
+  border: 2px solid white;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.item-price{
+  width: 70%;
+  margin-bottom: 0px;
+}
+
+.item-count{
+  width: 30%;
+  margin-bottom: 0px;
+}
+
+.button-delete,
+.button-edit{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  font-size: 40px;
+  border-radius: 50%;
+}
+
+.button-edit{
+  color: rgb(195, 240, 34);
+  margin-right: 25px;
+}
+
+.button-delete{
+  color: lightseagreen;
+}
+
+/* ------------------------------------- Form ----------------------------------- */
+
+.form-wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0px;
+  border-top: 2px solid black;
+}
+
+form{
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+form div{
+  display: inline;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.task-input{
+  outline: none;
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  background-color: #e7dddd;
+  border: 3px solid #12343b;
+  border-radius: 20px;
+}
+.full-width{
+  width: 100%;
+}
+
+.half-width{
+  width: 45%;
+}
+
+.hidden{
+  display: none;
+}
+
+.incline-content{
+  display: flex;
+}
+
+.button{
+  min-width: 100px;
+  padding: 15px 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 0;
+  margin: 30px 10px 10px 0px;
+  /* background-color: #f1af71; */
+  background-color: #c89666;
+  border: 2px solid #000;
+  cursor: pointer;
+  color: #fff;
+  display: inline;
+}
+
+input:focus,
+button.focus{
+  outline: none;
 }
