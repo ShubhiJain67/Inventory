@@ -42,8 +42,8 @@ const ItemCard = ({item, itemList, setID, setName, setDescription, setPrice, set
                     <img src={item.imageLink} alt={item.name} title={item.name} className="item-image"/>
                     <p className="item-description">{item.description}</p>
                     <div className="item-detail">
-                        <p className="item-price">Rs. {item.price}</p>
-                        <p className="item-count">Count : {item.count}</p>
+                        <div>Rs. {item.price} / pc</div>
+                        <div>Count : {item.count}</div>
                     </div>
                     <div className="task-buttons">
                         <button className="button-edit task-button" onClick={() => handleEdit(item)}>

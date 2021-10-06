@@ -1,33 +1,33 @@
 import React from 'react'
 
-const Search = (customSearchInput, itemList, dbItemList, setItemList, setCustomSearchInput) => {
+const Search = (customSearchInput, dbItemList, setItemList, setCustomSearchInput) => {
     // console.log("Search Search Function")
-    // console.log(customSearchInput.setCustomSearchInput)
+    console.log(customSearchInput)
     const onSearchInputChange = (event) => {
         customSearchInput.setCustomSearchInput(event.target.value)
     }
 
     const HandleSearch = (event) => {
         event.preventDefault()
-        console.log("Searching " + customSearchInput.itemList)
-        // setItemList(
-        //     customSearchInput.itemList.filter((i) => i.id === customSearchInput)
-        // )
+        customSearchInput.setItemList(customSearchInput.dbItemList)
+        customSearchInput.setItemList(
+            customSearchInput.dbItemList.filter((i) => i.id == customSearchInput.customSearchInput)
+        )
     }
 
-    const HandleReset = (event) => {
-        event.preventDefault()
+    const HandleReset = () => {
         console.log("Reset")
-        customSearchInput.setItemList(dbItemList)
+        customSearchInput.setItemList(customSearchInput.dbItemList)
+        customSearchInput.setCustomSearchInput('')
     }
 
     return (
         <div className="form-wrapper">
-            <form>
+            <form onSubmit={HandleSearch}>
                 <div className="full-width">
                     <input 
                         type="text" 
-                        placeholder="Search"
+                        placeholder="Item ID"
                         className="task-input"
                         required
                         value={customSearchInput.customSearchInput}
@@ -35,8 +35,8 @@ const Search = (customSearchInput, itemList, dbItemList, setItemList, setCustomS
                     />
                 </div>
                 <div className="incline-content">
-                    <button className="button" onClick={(event) => HandleReset}>Reset</button>
-                    <button className="button" onClick={(event) => HandleSearch}>Search using ID</button>
+                    <button className="button" onClick={() => HandleReset()}>Reset</button>
+                    <button className="button" type="submit">Search</button>
                 </div>
             </form>
         </div>
