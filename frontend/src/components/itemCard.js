@@ -3,15 +3,26 @@ import React from 'react'
 const ItemCard = ({item, itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, setEditItem}) => {
     
     const handleDelete = ({id}) => {
-        console.log("Deleting an Item")
+        const axios = require('axios').default;
+        console.log("--------------------- Deleting an Item -------------------")
         setItemList(
             itemList.filter((i) => i.id !== id)
         )
         setDbItemList(itemList)
+        // var link = `http://localhost:8000/items/${id}`
+        // console.log(link)
+        // axios.delete(link).then(function (response) {
+        //     console.log("Deleting from database" + response.data);
+        //     setItemList(
+        //         itemList.filter((i) => i.id !== id)
+        //     )
+        //     setDbItemList(itemList)
+        // })
     }
 
     const handleEdit = ({id}) => {
         console.log("Editing an Item")
+        console.log("Item List" + itemList)
         const targetItemList = itemList.filter((i) => i.id === id)
         if(targetItemList && targetItemList.length > 0){
             const targetItem = targetItemList[0]
