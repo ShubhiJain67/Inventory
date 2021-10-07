@@ -11,7 +11,7 @@ const Search = (customSearchInput, dbItemList, setItemList, setCustomSearchInput
         event.preventDefault()
         customSearchInput.setItemList(customSearchInput.dbItemList)
         customSearchInput.setItemList(
-            customSearchInput.dbItemList.filter((i) => i.id == customSearchInput.customSearchInput)
+            customSearchInput.dbItemList.filter((i) => (i.name.toLowerCase().includes(customSearchInput.customSearchInput.toLowerCase()) || i.id == customSearchInput.customSearchInput))
         )
     }
 
@@ -27,7 +27,7 @@ const Search = (customSearchInput, dbItemList, setItemList, setCustomSearchInput
                 <div className="full-width">
                     <input 
                         type="text" 
-                        placeholder="Item ID"
+                        placeholder="Item ID / Title"
                         className="task-input"
                         required
                         value={customSearchInput.customSearchInput}

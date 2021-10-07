@@ -67,15 +67,15 @@ const App = () => {
       },
       {
         id:4,
-        name:"Title 2",
-        description: "Description 2",
+        name:"Title 4",
+        description: "Description 4",
         price: 200,
         count: 2,
         imageLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/440px-Glass_of_Milk_%2833657535532%29.jpg",
       },
       {
         id:5,
-        name:"Title 3",
+        name:"Title 5",
         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         price: 1800,
         count: 2,

@@ -3,7 +3,7 @@ import {v4 as uuidv4} from "uuid";
 
 const AddItemForm = ({ID, name, description, price, count, imageLink, dbItemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, editItem, setEditItem}) => {
 
-    const onTitleChange = (event) => {
+    const onNameChange = (event) => {
         setName(event.target.value)
     }
     const onDescriptionChange = (event) => {
@@ -116,7 +116,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, dbItemList
                         className="task-input"
                         required
                         value={name}
-                        onChange={onTitleChange}
+                        onChange={onNameChange}
                     />
                 </div>
                 <div className="full-width">
