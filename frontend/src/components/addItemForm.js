@@ -117,7 +117,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                 </div>
                 <div className="full-width">
                     <input 
-                        type="text" 
+                        type="number" 
                         placeholder="Price" 
                         className="task-input"
                         value={price}
@@ -126,7 +126,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                 </div>
                 <div className="full-width">
                     <input 
-                        type="text" 
+                        type="number" 
                         placeholder="Count" 
                         className="task-input"
                         value={count}
