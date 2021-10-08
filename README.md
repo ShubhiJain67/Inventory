@@ -16,7 +16,7 @@ Where :
 
 2) Edit existing Items
 
-  <img width="1438" alt="Screenshot 2021-10-09 at 12 54 55 AM" src="https://user-images.githubusercontent.com/34946411/136615332-4c60b53e-cede-491e-8629-fd6b5a5084cb.png">
+  <img width="1438" alt="Screenshot 2021-10-09 at 1 37 26 AM" src="https://user-images.githubusercontent.com/34946411/136619301-efee44b6-a8c4-4515-afe8-f76c851f0fe8.png">
   
   
 3) Search for Items
