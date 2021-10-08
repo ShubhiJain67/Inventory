@@ -1,24 +1,40 @@
 import React from 'react'
+import axios from 'axios'
 
-const Search = (customSearchInput, dbItemList, setItemList, setCustomSearchInput) => {
-    // console.log("Search Search Function")
-    console.log(customSearchInput)
+const api = axios.create({
+    baseURL : 'http://localhost:8000/'
+  })
+
+const Search = ({customSearchInput, setItemList, setCustomSearchInput, setUpdateDBItemList}) => {
     const onSearchInputChange = (event) => {
-        customSearchInput.setCustomSearchInput(event.target.value)
+        setCustomSearchInput(event.target.value)
     }
 
     const HandleSearch = (event) => {
         event.preventDefault()
-        customSearchInput.setItemList(customSearchInput.dbItemList)
-        customSearchInput.setItemList(
-            customSearchInput.dbItemList.filter((i) => (i.name.toLowerCase().includes(customSearchInput.customSearchInput.toLowerCase()) || i.id == customSearchInput.customSearchInput))
-        )
+        console.log("Searching : " + customSearchInput)
+        try{
+            api.get(
+                `/items/${customSearchInput}`
+                ,
+                {
+                    headers: {'Access-Control-Allow-Origin': '*'}
+                })
+                .then((response) => {
+                response.status >= 200 && response.status < 300 ? 
+                setItemList([response.data]) : 
+                console.log("Error Occurred while searching the data : " + response.status)
+            })
+        }
+        catch(exeception){
+            console.log("Exception occurred when tried to hit the get using id api : " + exeception)
+        }
     }
 
     const HandleReset = () => {
-        console.log("Reset")
-        customSearchInput.setItemList(customSearchInput.dbItemList)
-        customSearchInput.setCustomSearchInput('')
+        console.log("Reseting Search Input")
+        setUpdateDBItemList(true)
+        setCustomSearchInput('')
     }
 
     return (
@@ -27,7 +43,7 @@ const Search = (customSearchInput, dbItemList, setItemList, setCustomSearchInput
                 <div className="full-width">
                     <input 
                         type="text" 
-                        placeholder="Item ID / Title"
+                        placeholder="Item ID"
                         className="task-input"
                         required
                         value={customSearchInput.customSearchInput}

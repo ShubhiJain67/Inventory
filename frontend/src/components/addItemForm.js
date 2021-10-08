@@ -1,7 +1,11 @@
 import React from "react";
-import {v4 as uuidv4} from "uuid";
+import axios from 'axios'
 
-const AddItemForm = ({ID, name, description, price, count, imageLink, dbItemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, editItem, setEditItem}) => {
+const api = axios.create({
+    baseURL : 'http://localhost:8000/items'
+  })
+
+const AddItemForm = ({ID, name, description, price, count, imageLink, setID, setName, setDescription, setPrice, setCount, setImageLink, editItem, setEditItem, setUpdateDBItemList}) => {
 
     const onNameChange = (event) => {
         setName(event.target.value)
@@ -31,70 +35,75 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, dbItemList
         setCount('')
         setPrice('')
         setImageLink('')
+        setUpdateDBItemList(true)
+    }
+    const AddItemInDB = () => {
+        try{
+            api.post('/',
+            {
+                "id":Math.floor(Math.random() * 1000001),
+                "name":`${name}`,
+                "description": `${description}`,
+                "price": price,
+                "count": count,
+                "imageLink": `${imageLink}`,
+            },
+            {
+                headers: {'Access-Control-Allow-Origin': '*'}
+            }
+            ).then((response) => {
+                console.log(response)
+                response.status >= 200 && response.status < 300 ?
+                console.log("Sucessfully added the data" + response.status)
+                : console.log("Error Occurred while adding the data : " + response.status)
+            })
+        }
+        catch(exeception){
+            console.log("Exception occurred when tried to hit the post api : " + exeception)
+        }
+    }
+
+    const EditItemInDB = () => {
+        try{
+            api.put(`/${ID}`,
+            {
+                "id":ID,
+                "name":`${name}`,
+                "description": `${description}`,
+                "price": price,
+                "count": count,
+                "imageLink": `${imageLink}`,
+            },
+            {
+                headers: {'Access-Control-Allow-Origin': '*'}
+            }
+            ).then((response) => {
+                response.status >= 200 && response.status < 300 ?
+                console.log("Sucessfully edited the data : " + response.status)
+                : console.log("Error Occurred while editing the data : " + response.status)
+            })
+        }
+        catch(exeception){
+            console.log("Exception occurred when tried to hit the put api : " + exeception)
+        }
     }
 
     const HandleSubmit = (event) => {
-        console.log("Submitting Form")
         event.preventDefault();
+        console.log("Submitting Form")
         if(editItem){
-            console.log("Updating an Item")
+            console.log("Updating an Item : " + ID)
             var edited = false;
-            setItemList(
-                dbItemList.map((item) => {
-                    if(item.id === ID){
-                        console.log("Find Item with the Editing ID")
-                        edited = true;
-                        return {
-                            id:`${ID}`,
-                            name:`${name}`,
-                            description: `${description}`,
-                            price: `${price}`,
-                            count: `${count}`,
-                            imageLink: `${imageLink}`,
-                        } 
-                    }else{
-                        return item
-                    }
-                })
-            )
+            EditItemInDB()
             if(!edited){
                 setEditItem(null)
             }
-            setDbItemList(dbItemList)
         }
         if(!editItem){
             console.log("Adding a new Item")
-            dbItemList.push(
-                {
-                    id:uuidv4(),
-                    name:`${name}`,
-                    description: `${description}`,
-                    price: `${price}`,
-                    count: `${count}`,
-                    imageLink: `${imageLink}`,
-                }
-            )
-            setItemList(dbItemList)
-            setDbItemList(dbItemList)
-            /*fetch('http://localhost:8000/items', {
-                method: 'POST',
-                body: JSON.stringify({
-                    id:uuidv4(),
-                    name:`${name}`,
-                    description: `${description}`,
-                    price: {price},
-                    count: {count},
-                    imageLink: `${imageLink}`,
-                })
-            })*/
+            AddItemInDB()
         }
-        setEditItem(null)
-        setID('')
-        setName('')
-        setDescription('')
-        setCount('')
-        setPrice('')
-        setImageLink('')
+        HandleReset()
     }
 
     return (

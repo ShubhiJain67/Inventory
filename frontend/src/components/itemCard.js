@@ -1,28 +1,37 @@
 import React from 'react'
+import axios from 'axios'
 
-const ItemCard = ({item, itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setItemList, setDbItemList, setEditItem}) => {
+const api = axios.create({
+    baseURL : 'http://localhost:8000/items'
+  })
+
+const ItemCard = ({item, itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setEditItem, setUpdateDBItemList}) => {
     
     const handleDelete = ({id}) => {
-        const axios = require('axios').default;
-        console.log("--------------------- Deleting an Item -------------------")
-        setItemList(
-            itemList.filter((i) => i.id !== id)
-        )
-        setDbItemList(itemList)
-        // var link = `http://localhost:8000/items/${id}`
-        // console.log(link)
-        // axios.delete(link).then(function (response) {
-        //     console.log("Deleting from database" + response.data);
-        //     setItemList(
-        //         itemList.filter((i) => i.id !== id)
-        //     )
-        //     setDbItemList(itemList)
-        // })
+        console.log("Deleting an Item : " + id)
+        try{
+            api.delete(
+                `/${id}`,
+                {
+                    headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    }
+                },
+                {
+                    headers: {'Access-Control-Allow-Origin': '*'}
+                }
+                ).then(function (response) {
+                console.log("Deleting from database : " + response.data);
+            })
+        }
+        catch(exeception){
+            console.log("Exception occurred when tried to hit the delete api : " + exeception)
+        }
+        setUpdateDBItemList(true)
     }
 
     const handleEdit = ({id}) => {
-        console.log("Editing an Item")
-        console.log("Item List" + itemList)
+        console.log("Editing an Item : " + id)
         const targetItemList = itemList.filter((i) => i.id === id)
         if(targetItemList && targetItemList.length > 0){
             const targetItem = targetItemList[0]

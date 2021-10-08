@@ -1,18 +1,15 @@
 import React from "react";
 import Search from "./search";
 
-const Header = (customSearchInput, dbItemList, setItemList, setCustomSearchInput) => {
-    // console.log("Header Search Function")
-    console.log(customSearchInput)
+const Header = ({customSearchInput, setItemList, setCustomSearchInput, setUpdateDBItemList}) => {
     return (
         <div className="header">
             <h1>My Inventory</h1>
             <Search
-                customSearchInput={customSearchInput.customSearchInput}
-                dbItemList={customSearchInput.dbItemList}
-
-                setItemList={customSearchInput.setItemList}
-                setCustomSearchInput={customSearchInput.setCustomSearchInput}
+                customSearchInput={customSearchInput}
+                setItemList={setItemList}
+                setCustomSearchInput={setCustomSearchInput}
+                setUpdateDBItemList={setUpdateDBItemList}
             />
         </div>
     )

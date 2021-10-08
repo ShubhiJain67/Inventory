@@ -4,8 +4,19 @@ from model import Item
 from typing import List, Optional
 from database import SessionLocal
 from db_model import Item as DB_Item
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 db = SessionLocal()
 
 @app.get('/')
@@ -27,6 +38,7 @@ def get_all_items():
 # -------------------- Get Item By ID -----------------
 @app.get('/items/{item_id}', response_model=Item, status_code=status.HTTP_200_OK)
 def get_item_by_id(item_id: int):
+    # item = db.query(DB_Item).filter(DB_Item.id == item_id or DB_Item.name.contains(item_id)).first()
     item = db.query(DB_Item).filter(DB_Item.id == item_id).first()
     if item: 
         return item
