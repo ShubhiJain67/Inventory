@@ -6,26 +6,6 @@ const api = axios.create({
   })
 
 const AddItemForm = ({ID, name, description, price, count, imageLink, setID, setName, setDescription, setPrice, setCount, setImageLink, editItem, setEditItem, setUpdateDBItemList}) => {
-
-    const onNameChange = (event) => {
-        setName(event.target.value)
-    }
-    const onDescriptionChange = (event) => {
-        setDescription(event.target.value)
-    }
-    const onPriceChange = (event) => {
-        setPrice(event.target.value)
-    }
-    const onCountChange = (event) => {
-        setCount(event.target.value)
-    }
-    const onImageLinkChange = (event) => {
-        setImageLink(event.target.value)
-    }
-    const onIDChange = (event) => {
-        setID(event.target.value)
-    }
-
     const HandleReset = () => {
         console.log("Reseting Form")
         setEditItem(null)
@@ -35,7 +15,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
         setCount('')
         setPrice('')
         setImageLink('')
-        setUpdateDBItemList(true)
+        setUpdateDBItemList("true")
     }
     const AddItemInDB = () => {
         try{
@@ -62,7 +42,6 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
             console.log("Exception occurred when tried to hit the post api : " + exeception)
         }
     }
-
     const EditItemInDB = () => {
         try{
             api.put(`/${ID}`,
@@ -87,7 +66,6 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
             console.log("Exception occurred when tried to hit the put api : " + exeception)
         }
     }
-
     const HandleSubmit = (event) => {
         event.preventDefault();
         console.log("Submitting Form")
@@ -115,7 +93,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                         placeholder="ID"
                         className="task-input"
                         value={ID}
-                        onChange={onIDChange}
+                        onChange={(event) => {setID(event.target.value)}}
                     />
                 </div>
                 <div className="full-width">
@@ -125,7 +103,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                         className="task-input"
                         required
                         value={name}
-                        onChange={onNameChange}
+                        onChange={(event) => {setName(event.target.value)}}
                     />
                 </div>
                 <div className="full-width">
@@ -134,7 +112,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                         placeholder="Description" 
                         className="task-input"
                         value={description}
-                        onChange={onDescriptionChange}
+                        onChange={(event) => {setDescription(event.target.value)}}
                     />
                 </div>
                 <div className="full-width">
@@ -143,7 +121,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                         placeholder="Price" 
                         className="task-input"
                         value={price}
-                        onChange={onPriceChange}
+                        onChange={(event) => {setPrice(event.target.value)}}
                     />
                 </div>
                 <div className="full-width">
@@ -152,7 +130,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                         placeholder="Count" 
                         className="task-input"
                         value={count}
-                        onChange={onCountChange}
+                        onChange={(event) => {setCount(event.target.value)}}
                     />
                 </div>
                 <div className="full-width">
@@ -161,7 +139,7 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                         placeholder="Image Link" 
                         className="task-input"
                         value={imageLink}
-                        onChange={onImageLinkChange}
+                        onChange={(event) => {setImageLink(event.target.value)}}
                     />
                 </div>
                 <div className="incline-content">

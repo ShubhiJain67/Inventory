@@ -2,20 +2,17 @@ import React from 'react'
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL : 'http://localhost:8000/'
+    baseURL : 'http://localhost:8000/items'
   })
 
 const Search = ({customSearchInput, setItemList, setCustomSearchInput, setUpdateDBItemList}) => {
-    const onSearchInputChange = (event) => {
-        setCustomSearchInput(event.target.value)
-    }
 
     const HandleSearch = (event) => {
         event.preventDefault()
         console.log("Searching : " + customSearchInput)
         try{
-            api.get(
-                `/items/${customSearchInput}`
+        api.get(
+                `/${customSearchInput}`
                 ,
                 {
                     headers: {'Access-Control-Allow-Origin': '*'}
@@ -29,12 +26,13 @@ const Search = ({customSearchInput, setItemList, setCustomSearchInput, setUpdate
         catch(exeception){
             console.log("Exception occurred when tried to hit the get using id api : " + exeception)
         }
+        setCustomSearchInput('')
     }
 
     const HandleReset = () => {
         console.log("Reseting Search Input")
-        setUpdateDBItemList(true)
         setCustomSearchInput('')
+        setUpdateDBItemList("true")
     }
 
     return (
@@ -46,8 +44,8 @@ const Search = ({customSearchInput, setItemList, setCustomSearchInput, setUpdate
                         placeholder="Item ID"
                         className="task-input"
                         required
-                        value={customSearchInput.customSearchInput}
-                        onChange={onSearchInputChange}
+                        value={customSearchInput}
+                        onChange={(event) => {setCustomSearchInput(event.target.value)}}
                     />
                 </div>
                 <div className="incline-content">
