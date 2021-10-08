@@ -1,6 +1,11 @@
 # Inventory
 
 Created an Inventory Management System
+Using :
+1) React JS
+2) FastAPI
+3) SQLAlchemy
+4) PostGres
 
   <img width="1438" alt="Screenshot 2021-10-09 at 12 19 52 AM" src="https://user-images.githubusercontent.com/34946411/136615198-117f5972-264f-46d7-8d28-055da58298ef.png">
   
