@@ -8,7 +8,7 @@ Created an Inventory Management System
 Where :
 1) User can Add Items
   
-   <img width="1438" alt="Screenshot 2021-10-09 at 12 56 17 AM" src="https://user-images.githubusercontent.com/34946411/136615511-76d7b292-dd90-4e10-a536-4a3c303bdbbe.png">
+  <img width="1438" alt="Screenshot 2021-10-09 at 12 56 17 AM" src="https://user-images.githubusercontent.com/34946411/136615511-76d7b292-dd90-4e10-a536-4a3c303bdbbe.png">
    
    
   <img width="1438" alt="Screenshot 2021-10-09 at 12 56 28 AM" src="https://user-images.githubusercontent.com/34946411/136615522-3fb793a4-5200-4d88-920e-c761dc82517a.png">
