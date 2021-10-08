@@ -25,3 +25,5 @@ Where :
 
   
 4) Delete an Item
+
+  <img width="1438" alt="Screenshot 2021-10-09 at 2 41 16 AM" src="https://user-images.githubusercontent.com/34946411/136625218-71edb6f1-055c-4aa4-9b42-3a496dc972dd.png">
