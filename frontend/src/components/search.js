@@ -15,7 +15,11 @@ const Search = ({customSearchInput, setItemList, setCustomSearchInput, setUpdate
                 `/${customSearchInput}`
                 ,
                 {
-                    headers: {'Access-Control-Allow-Origin': '*'}
+                    headers: {'Access-Control-Allow-Origin': '*'},
+                    proxy: {
+                      host: 'localhost',
+                      port: 800
+                    }
                 })
                 .then((response) => {
                 response.status >= 200 && response.status < 300 ? 

@@ -5,29 +5,37 @@ const api = axios.create({
     baseURL : 'http://localhost:8000/items'
   })
 
-const ItemCard = ({item, itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setEditItem, setUpdateDBItemList}) => {
+const ItemCard = ({item, editItem, itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setEditItem, setUpdateDBItemList}) => {
     
     const handleDelete = ({id}) => {
         console.log("Deleting an Item : " + id)
-        try{
-            api.delete(
-                `/${id}`,
-                {
-                    headers: {
-                    'Access-Control-Allow-Origin': '*',
+        document.getElementById(id).firstElementChild.classList.toggle('white-border')
+        if(window.confirm('Are you sure that the item is to be deleted?')){
+            try{
+                api.delete(
+                    `/${id}`,
+                    {
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                        },
+                        proxy: {
+                          host: 'localhost',
+                          port: 800
+                        }
+                    },
+                    {
+                        headers: {'Access-Control-Allow-Origin': '*'}
                     }
-                },
-                {
-                    headers: {'Access-Control-Allow-Origin': '*'}
-                }
-                ).then(function (response) {
-                console.log("Deleting from database : " + response.data);
-            })
+                    ).then(function (response) {
+                    console.log("Deleting from database : " + response.data);
+                })
+            }
+            catch(exeception){
+                console.log("Exception occurred when tried to hit the delete api : " + exeception)
+            }
+            setUpdateDBItemList(true)
         }
-        catch(exeception){
-            console.log("Exception occurred when tried to hit the delete api : " + exeception)
-        }
-        setUpdateDBItemList(true)
+        document.getElementById(id).firstElementChild.classList.toggle('white-border')
     }
 
     const handleEdit = ({id}) => {
@@ -45,8 +53,8 @@ const ItemCard = ({item, itemList, setID, setName, setDescription, setPrice, set
         }
     }
     return (
-        <div className="item-card-wrapper" key={item.id}>
-                <div className="item-card">
+        <div className="item-card-wrapper" key={item.id} id={item.id}>
+                <div className={((editItem != null && editItem.id === item.id)) ? "item-card white-border" : "item-card"}>
                     <h1 className="item-name">{item.name}</h1>
                     <img src={item.imageLink} alt={item.name} title={item.name} className="item-image"/>
                     <p className="item-description">{item.description}</p>

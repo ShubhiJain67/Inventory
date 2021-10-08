@@ -101,6 +101,10 @@
   color: lightseagreen;
 }
 
+.white-border{
+  border:2px solid white;
+}
+
 /* ------------------------------------- Form ----------------------------------- */
 
 .form-wrapper{

@@ -26,7 +26,11 @@ const App = () => {
     try{
       api.get('/',
       {
-        headers: {'Access-Control-Allow-Origin': '*'}
+        headers: {'Access-Control-Allow-Origin': '*'},
+        proxy: {
+          host: 'localhost',
+          port: 800
+        }
       }
       ).then((response) => {
         if(response.status >= 200 && response.status < 300){
@@ -79,6 +83,7 @@ const App = () => {
                 <div className="col-4"></div>
                 <div className="col-8">
                   <ItemCardList
+                    editItem={editItem}
                     itemList={itemList} 
 
                     setID={setID}

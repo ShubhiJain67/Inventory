@@ -29,7 +29,11 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                 "imageLink": `${imageLink}`,
             },
             {
-                headers: {'Access-Control-Allow-Origin': '*'}
+                headers: {'Access-Control-Allow-Origin': '*'},
+                proxy: {
+                  host: 'localhost',
+                  port: 800
+                }
             }
             ).then((response) => {
                 console.log(response)
@@ -54,7 +58,11 @@ const AddItemForm = ({ID, name, description, price, count, imageLink, setID, set
                 "imageLink": `${imageLink}`,
             },
             {
-                headers: {'Access-Control-Allow-Origin': '*'}
+                headers: {'Access-Control-Allow-Origin': '*'},
+                proxy: {
+                  host: 'localhost',
+                  port: 800
+                }
             }
             ).then((response) => {
                 response.status >= 200 && response.status < 300 ?

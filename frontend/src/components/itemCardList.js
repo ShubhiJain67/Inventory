@@ -1,12 +1,13 @@
 import React from 'react'
 import ItemCard from './itemCard'
 
-const ItemCardList = ({itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setEditItem, setUpdateDBItemList}) => {
+const ItemCardList = ({editItem, itemList, setID, setName, setDescription, setPrice, setCount, setImageLink, setEditItem, setUpdateDBItemList}) => {
     
     const ItemCards = (itemList).map((item) => {
         return (
             <ItemCard 
                 item = {item}
+                editItem={editItem}
                 itemList = {itemList}
                 setID = {setID}
                 setName = {setName}
